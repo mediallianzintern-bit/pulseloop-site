@@ -8,6 +8,7 @@ import CountUp from "../components/CountUp";
 import Clock from "../components/Clock";
 import Who from "../components/Who";
 import Pricing from "../components/Pricing";
+import DemoModal from "../components/DemoModal";
 
 const STATS = [
   { value: "15–20", unit: "min", label: "lost per rep, per day, to searching" },
@@ -573,17 +574,17 @@ export default function Page() {
           </div>
         </section>
 
-        {/* ---------- pricing ---------- */}
+        {/* ---------- engagement models ---------- */}
         <section className="section" id="pricing">
           <div className="container">
-            <Reveal><p className="overline">Pricing</p></Reveal>
+            <Reveal><p className="overline">Ways to Work With Us</p></Reveal>
             <Reveal delay={80}>
-              <h2 className="section-title">Start with a pilot. Scale with proof.</h2>
+              <h2 className="section-title">Engagement Models</h2>
             </Reveal>
             <Reveal delay={160}>
               <p className="section-sub">
-                Simple per-rep pricing. Prove the impact with one pod, then roll out
-                on evidence.
+                Every deployment is configured around the client&apos;s sales workflows,
+                enterprise knowledge, CRM/LMS environment and governance requirements.
               </p>
             </Reveal>
             <Reveal delay={200}>
@@ -607,8 +608,8 @@ export default function Page() {
                   they learn in the classroom. Ready to transform your sales ecosystem?
                 </p>
                 <div className="cta-btns">
-                  <a href="#" className="btn btn-accent">Start your pilot deployment</a>
-                  <a href="#" className="btn btn-ghost">Speak to an AI enablement expert</a>
+                  <a href="#demo" className="btn btn-accent">Discuss a pilot deployment</a>
+                  <a href="#demo" className="btn btn-ghost">Speak to an AI enablement expert</a>
                 </div>
                 <p className="cta-note">
                   SALES ENABLEMENT + ADAPTIVE LEARNING · ONE PLATFORM
@@ -681,6 +682,8 @@ export default function Page() {
           </div>
         </div>
       </footer>
+
+      <DemoModal />
     </>
   );
 }

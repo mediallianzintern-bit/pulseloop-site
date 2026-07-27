@@ -1,121 +1,85 @@
-"use client";
-
-import { useState } from "react";
-
-const PLANS = [
+const MODELS = [
   {
     num: "01",
     name: "Pilot Deployment",
-    tagline: "Prove it with one sales pod",
-    monthly: "$29",
-    annual: "$24",
-    per: "/rep/month",
+    tagline: "Controlled validation with one sales team",
+    commercial: "Fixed pilot fee",
+    basis: "Based on scope, number of users and integrations",
     features: [
       "4–6 week guided pilot",
-      "Live signal detection + scoring",
-      "Hinglish + English NLP engine",
-      "Baseline vs. uplift report",
-      "L&D gap dashboard",
-      "Success criteria defined together",
+      "Defined sales use case and success criteria",
+      "Enterprise-content and playbook setup",
+      "Controlled user group onboarding",
+      "Baseline and pilot outcome report",
+      "Governance and data-readiness review",
     ],
-    cta: "Start your pilot",
+    cta: "Discuss a pilot",
     ctaStyle: "btn-ghost",
   },
   {
     num: "02",
     name: "Enterprise Rollout",
-    tagline: "Scale what the pilot proved",
-    monthly: "$49",
-    annual: "$41",
-    per: "/rep/month",
+    tagline: "Scale the validated use case across teams",
+    commercial: "Annual enterprise license",
+    basis: "Priced by users, modules and integration scope",
     featured: true,
     features: [
-      "Everything in Pilot",
-      "CRM + LMS orchestration",
-      "Custom competitor firewall lists",
-      "Role-based dashboards: rep, manager, L&D",
-      "Adaptive learning pathways",
-      "Dedicated success manager",
+      "Everything included in the pilot",
+      "CRM and LMS integration",
+      "Role-based dashboards for sales, managers and L&D",
+      "Adaptive learning recommendations",
+      "Media-specific playbooks and knowledge configuration",
+      "Dedicated implementation and customer-success support",
     ],
-    cta: "Request a demo",
+    cta: "Request an enterprise proposal",
     ctaStyle: "btn-accent",
   },
   {
     num: "03",
     name: "Strategic Partnership",
-    tagline: "For ecosystem-scale portfolios",
-    monthly: "Custom",
-    annual: "Custom",
-    per: "",
+    tagline: "For multi-business, multi-market or platform deployments",
+    commercial: "Custom commercial agreement",
     features: [
-      "Everything in Rollout",
-      "Custom signal models + regional languages",
-      "Portfolio-specific playbook engineering",
+      "Everything included in Enterprise Rollout",
+      "Multiple teams, business units or markets",
+      "Regional-language and custom signal models",
+      "Portfolio-specific playbook development",
       "Co-developed learning pathways",
-      "Quarterly business reviews",
+      "Enterprise governance and quarterly reviews",
     ],
-    cta: "Speak to an expert",
+    cta: "Speak with our team",
     ctaStyle: "btn-ghost",
   },
 ];
 
 export default function Pricing() {
-  const [period, setPeriod] = useState("monthly");
-  const [swapping, setSwapping] = useState(false);
-
-  const switchTo = (next) => {
-    if (next === period) return;
-    setSwapping(true);
-    setTimeout(() => {
-      setPeriod(next);
-      setSwapping(false);
-    }, 250);
-  };
-
   return (
     <>
-      <div className="price-toggle">
-        <button
-          className={`pt-btn ${period === "monthly" ? "active" : ""}`}
-          onClick={() => switchTo("monthly")}
-        >
-          Monthly
-        </button>
-        <button
-          className={`pt-btn ${period === "annual" ? "active" : ""}`}
-          onClick={() => switchTo("annual")}
-        >
-          Annual
-        </button>
-        <span className="pt-save">SAVE 17%</span>
-      </div>
-
       <div className="price-grid">
-        {PLANS.map((p) => (
-          <article key={p.num} className={`price-card ${p.featured ? "price-featured" : ""}`}>
-            {p.featured && <span className="price-pop">RECOMMENDED</span>}
-            <span className="price-num">{p.num}</span>
-            <h3>{p.name}</h3>
-            <p className="price-for">{p.tagline}</p>
-            <div className="price-line">
-              <span className={`price-value ${swapping ? "swapping" : ""}`}>
-                {period === "monthly" ? p.monthly : p.annual}
-              </span>
-              {p.per && <span className="price-per">{p.per}</span>}
+        {MODELS.map((m) => (
+          <article key={m.num} className={`price-card ${m.featured ? "price-featured" : ""}`}>
+            {m.featured && <span className="price-pop">RECOMMENDED</span>}
+            <span className="price-num">{m.num}</span>
+            <h3>{m.name}</h3>
+            <p className="price-for">{m.tagline}</p>
+            <div className="price-commercial">
+              <span className="price-model">{m.commercial}</span>
+              {m.basis && <span className="price-basis">{m.basis}</span>}
             </div>
             <ul>
-              {p.features.map((f) => (
+              {m.features.map((f) => (
                 <li key={f}>{f}</li>
               ))}
             </ul>
-            <a href="#demo" className={`btn ${p.ctaStyle} btn-block`}>{p.cta}</a>
+            <a href="#demo" className={`btn ${m.ctaStyle} btn-block`}>{m.cta}</a>
           </article>
         ))}
       </div>
 
       <p className="price-note">
-        Prices in USD, billed per rep. Every plan includes the full signal engine,
-        competitor firewall, and performance scoring, from day one of the pilot.
+        Pricing is provided after a discovery and scope assessment. Commercials may
+        include an implementation fee, annual platform licensing and optional
+        integration or customization charges.
       </p>
     </>
   );
