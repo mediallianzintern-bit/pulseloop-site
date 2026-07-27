@@ -45,7 +45,7 @@ export default function Nav() {
           </nav>
           <div className="nav-actions">
             <a href="#" className="nav-signin">Sign in</a>
-            <a href="#demo" className="btn btn-accent btn-sm">Request a demo</a>
+            <a href="#demo" data-demo="Nav — Request a demo" className="btn btn-accent btn-sm">Request a demo</a>
             <button
               className="nav-burger"
               aria-label="Open menu"
@@ -64,7 +64,7 @@ export default function Nav() {
             <a key={href} href={href} onClick={() => setOpen(false)}>{label}</a>
           ))}
           <a href="#" className="mm-signin" onClick={() => setOpen(false)}>Sign in</a>
-          <a href="#demo" className="btn btn-accent" onClick={() => setOpen(false)}>
+          <a href="#demo" data-demo="Mobile menu — Request a demo" className="btn btn-accent" onClick={() => setOpen(false)}>
             Request a demo
           </a>
         </nav>

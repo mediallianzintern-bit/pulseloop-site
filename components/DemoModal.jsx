@@ -19,11 +19,22 @@ const EMPTY = {
   message: "",
 };
 
+// Only the three engagement models are echoed back in the modal; generic
+// triggers like the nav button are still recorded, just not displayed.
+const MODEL_NAMES = [
+  "Pilot Deployment",
+  "Enterprise Rollout",
+  "Strategic Partnership",
+];
+
 // Rejects the obvious junk without bouncing unusual but valid addresses.
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 export default function DemoModal() {
   const [open, setOpen] = useState(false);
+  // Which button opened the form — recorded with the lead so sales knows
+  // whether this was a pilot enquiry or a partnership enquiry.
+  const [interest, setInterest] = useState("");
   const [values, setValues] = useState(EMPTY);
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState("idle"); // idle | sending | done | error
@@ -48,6 +59,7 @@ export default function DemoModal() {
       if (!trigger) return;
       e.preventDefault();
       restoreFocusRef.current = trigger;
+      setInterest(trigger.dataset.demo || trigger.textContent.trim() || "");
       setStatus("idle");
       setServerError("");
       setErrors({});
@@ -141,6 +153,7 @@ export default function DemoModal() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...values,
+          interest,
           page: window.location.pathname,
         }),
       });
@@ -193,6 +206,12 @@ export default function DemoModal() {
         ) : (
           <>
             <h2 className="dm-title" id="dm-title">Request a demo</h2>
+            {MODEL_NAMES.includes(interest) && (
+              <p className="dm-context">
+                <span className="dm-context-label">Enquiry about</span>
+                {interest}
+              </p>
+            )}
             <p className="dm-sub">
               See the Dual-Loop platform on your own sales scenarios. Tell us a
               little about your team and we&apos;ll set it up.

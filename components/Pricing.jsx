@@ -71,7 +71,13 @@ export default function Pricing() {
                 <li key={f}>{f}</li>
               ))}
             </ul>
-            <a href="#demo" className={`btn ${m.ctaStyle} btn-block`}>{m.cta}</a>
+            <a
+              href="#demo"
+              data-demo={m.name}
+              className={`btn ${m.ctaStyle} btn-block`}
+            >
+              {m.cta}
+            </a>
           </article>
         ))}
       </div>

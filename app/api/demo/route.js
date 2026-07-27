@@ -21,11 +21,11 @@ export async function POST(request) {
     name: clean(body.name, 120),
     email: clean(body.email, 200),
     company: clean(body.company, 160),
-    title: clean(body.title, 160),
-    size: clean(body.size, 60),
-    message: clean(body.message, 2000),
-    page: clean(body.page, 200),
-    submittedAt: new Date().toISOString(),
+    title: clean(body.title, 160) || null,
+    company_size: clean(body.size, 60) || null,
+    message: clean(body.message, 2000) || null,
+    interest: clean(body.interest, 120) || null,
+    page: clean(body.page, 200) || null,
   };
 
   if (!entry.name || !entry.email || !entry.company) {
@@ -38,31 +38,35 @@ export async function POST(request) {
     return NextResponse.json({ error: "Please enter a valid email." }, { status: 400 });
   }
 
-  const endpoint = process.env.SHEET_WEBHOOK_URL;
-  if (!endpoint) {
+  const url = process.env.SUPABASE_URL;
+  const key = process.env.SUPABASE_SECRET_KEY;
+
+  if (!url || !key) {
     // Never lose a lead to a config mistake — surface it in the logs.
-    console.error("SHEET_WEBHOOK_URL is not set. Submission received:", entry);
-    return NextResponse.json(
-      { error: "The form isn't connected yet." },
-      { status: 500 }
-    );
+    console.error("Supabase env vars missing. Submission received:", entry);
+    return NextResponse.json({ error: "The form isn't connected yet." }, { status: 500 });
   }
 
   try {
-    const res = await fetch(endpoint, {
+    const res = await fetch(`${url}/rest/v1/demo_requests`, {
       method: "POST",
-      // text/plain keeps Apps Script from rejecting a CORS preflight.
-      headers: { "Content-Type": "text/plain;charset=utf-8" },
-      body: JSON.stringify({ ...entry, token: process.env.SHEET_TOKEN || "" }),
-      redirect: "follow",
+      headers: {
+        apikey: key,
+        Authorization: `Bearer ${key}`,
+        "Content-Type": "application/json",
+        Prefer: "return=minimal",
+      },
+      body: JSON.stringify(entry),
     });
-    if (!res.ok) throw new Error(`Sheet responded ${res.status}`);
+
+    if (!res.ok) {
+      const detail = await res.text().catch(() => "");
+      throw new Error(`Supabase responded ${res.status}: ${detail}`);
+    }
   } catch (err) {
+    // Logged in full so a failed write can still be recovered from Vercel logs.
     console.error("Failed to record demo request:", err, entry);
-    return NextResponse.json(
-      { error: "We couldn't save your request." },
-      { status: 502 }
-    );
+    return NextResponse.json({ error: "We couldn't save your request." }, { status: 502 });
   }
 
   return NextResponse.json({ ok: true });

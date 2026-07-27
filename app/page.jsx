@@ -552,9 +552,9 @@ export default function Page() {
               <Reveal delay={160}>
                 <RoleDashboards />
                 <div className="dev-links">
-                  <a href="#demo">REQUEST A DEMO</a>
+                  <a href="#demo" data-demo="Role dashboards — Request a demo">REQUEST A DEMO</a>
                   <span className="sep">/</span>
-                  <a href="#demo">SPEAK TO AN EXPERT</a>
+                  <a href="#demo" data-demo="Role dashboards — Speak to an expert">SPEAK TO AN EXPERT</a>
                 </div>
               </Reveal>
             </div>
@@ -608,8 +608,8 @@ export default function Page() {
                   they learn in the classroom. Ready to transform your sales ecosystem?
                 </p>
                 <div className="cta-btns">
-                  <a href="#demo" className="btn btn-accent">Discuss a pilot deployment</a>
-                  <a href="#demo" className="btn btn-ghost">Speak to an AI enablement expert</a>
+                  <a href="#demo" data-demo="Closing CTA — Discuss a pilot deployment" className="btn btn-accent">Discuss a pilot deployment</a>
+                  <a href="#demo" data-demo="Closing CTA — Speak to an enablement expert" className="btn btn-ghost">Speak to an AI enablement expert</a>
                 </div>
                 <p className="cta-note">
                   SALES ENABLEMENT + ADAPTIVE LEARNING · ONE PLATFORM

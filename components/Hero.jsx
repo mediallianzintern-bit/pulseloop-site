@@ -166,7 +166,7 @@ export default function Hero() {
           flowing into adaptive learning pathways.
         </p>
         <div className="hero-ctas">
-          <a href="#demo" className="btn btn-accent">Request a demo</a>
+          <a href="#demo" data-demo="Hero — Request a demo" className="btn btn-accent">Request a demo</a>
           <a href="#dual-loop" className="btn btn-ghost">Explore the Dual-Loop Architecture</a>
         </div>
       </div>
