@@ -612,8 +612,13 @@ export default function Page() {
           <div className="footer-grid">
             <div className="footer-brand">
               <a href="#top" className="brand">
-                <span className="brand-mark" aria-hidden="true" />
-                PulseLoop
+                <img
+                  src="/logo.png"
+                  alt="PulseLoop"
+                  className="brand-logo brand-logo-footer"
+                  width={452}
+                  height={96}
+                />
               </a>
               <p>
                 The AI-enabled sales assistant for media organizations. Sales
