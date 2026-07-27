@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 const LINKS = [
   ["#features", "Features"],
   ["#dual-loop", "Dual-Loop"],
-  ["#who", "Who we serve"],
   ["#pricing", "Engagement"],
 ];
 

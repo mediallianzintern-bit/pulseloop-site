@@ -6,7 +6,6 @@ import CallSim from "../components/CallSim";
 import RoleDashboards from "../components/RoleDashboards";
 import CountUp from "../components/CountUp";
 import Clock from "../components/Clock";
-import Who from "../components/Who";
 import Pricing from "../components/Pricing";
 import DemoModal from "../components/DemoModal";
 
@@ -561,21 +560,8 @@ export default function Page() {
           </div>
         </section>
 
-        {/* ---------- who we serve ---------- */}
-        <section className="section section-alt" id="who">
-          <div className="container">
-            <Reveal><p className="overline">Who we serve</p></Reveal>
-            <Reveal delay={80}>
-              <h2 className="section-title">Built for every side of the desk.</h2>
-            </Reveal>
-            <Reveal delay={160}>
-              <Who />
-            </Reveal>
-          </div>
-        </section>
-
         {/* ---------- engagement models ---------- */}
-        <section className="section" id="pricing">
+        <section className="section section-alt" id="pricing">
           <div className="container">
             <Reveal><p className="overline">Ways to Work With Us</p></Reveal>
             <Reveal delay={80}>
@@ -651,7 +637,6 @@ export default function Page() {
               <a href="#problem">The problem</a>
               <a href="#dual-loop">Dual-Loop Architecture</a>
               <a href="#features">Features</a>
-              <a href="#who">Who we serve</a>
             </div>
             <div className="footer-col">
               <h5>PLATFORM</h5>
