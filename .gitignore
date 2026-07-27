@@ -3,3 +3,6 @@ node_modules/
 out/
 .DS_Store
 npm-debug.log*
+
+# local secrets
+.env.local
